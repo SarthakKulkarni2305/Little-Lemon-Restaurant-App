@@ -10,6 +10,9 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.navigation.compose.rememberNavController
+import com.edwards2kx.littlelemon.composables.NavigationComposable
+import com.edwards2kx.littlelemon.composables.OnBoarding
 import com.edwards2kx.littlelemon.ui.theme.LittleLemonTheme
 
 class MainActivity : ComponentActivity() {
@@ -22,7 +25,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    val navHostController = rememberNavController()
+                    NavigationComposable(navHostController)
+                    //OnBoarding(navController)
+                    //Greeting("Android")
                 }
             }
         }
