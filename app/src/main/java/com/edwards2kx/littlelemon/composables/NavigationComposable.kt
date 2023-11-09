@@ -6,10 +6,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.edwards2kx.littlelemon.data.AppDatabase
 
 
 @Composable
-fun NavigationComposable(navController: NavHostController) {
+fun NavigationComposable(navController: NavHostController, database: AppDatabase) {
     val context = LocalContext.current
     val sharedPreferences = context.getSharedPreferences(USER_PROFILE, Context.MODE_PRIVATE)
     val email = sharedPreferences.getString(EMAIL, "") ?: ""
@@ -20,7 +21,7 @@ fun NavigationComposable(navController: NavHostController) {
         startDestination = if (hasUserData) HomeDestination.route else OnboardingDestination.route
     ) {
         composable(OnboardingDestination.route) { OnBoarding(navController = navController) }
-        composable(HomeDestination.route) { Home(navController = navController) }
+        composable(HomeDestination.route) { Home(navController = navController, database) }
         composable(ProfileDestination.route) { Profile(navController = navController) }
     }
 }

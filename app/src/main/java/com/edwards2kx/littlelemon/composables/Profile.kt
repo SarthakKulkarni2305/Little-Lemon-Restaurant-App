@@ -46,11 +46,11 @@ import com.edwards2kx.littlelemon.ui.theme.LittleLemonTheme
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Profile(navController: NavHostController) {
-    var firstName by remember { mutableStateOf("Tilly") }
-    var lastName by remember { mutableStateOf("Doe") }
-    var email by remember { mutableStateOf("tillydoe@example.com") }
     val context = LocalContext.current
     val sharedPreferences = context.getSharedPreferences(USER_PROFILE, Context.MODE_PRIVATE)
+    var firstName = sharedPreferences.getString(FIRST_NAME, "Tilly") ?: "Tilly"
+    var lastName = sharedPreferences.getString(LAST_NAME, "Doe") ?: "Doe"
+    var email = sharedPreferences.getString(EMAIL, "tillydoe@example.com") ?: "tillydoe@example.com"
 
     Box(
         contentAlignment = Alignment.Center, modifier = Modifier
